@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://hgd6dok0emau"]
+
+[ext_resource type="Texture2D" uid="uid://epnxeweju3hw" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/background_/sky_.png" id="1_4r4us"]
+
+[node name="nube" type="Sprite2D" unique_id=99953807]
+position = Vector2(2.0000153, 0)
+scale = Vector2(2.5666666, 2.1756756)
+texture = ExtResource("1_4r4us")
+region_enabled = true
+region_rect = Rect2(0, 0, 15.538528, 37.43036)

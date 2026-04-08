@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bigcyanlka4r1"]
+
+[ext_resource type="Texture2D" uid="uid://dkaiil2tosga3" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/foreground_/foreground_.png" id="1_24u2b"]
+
+[node name="pasto" type="StaticBody2D" unique_id=6412722]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1259271086]
+texture = ExtResource("1_24u2b")
+region_enabled = true
+region_rect = Rect2(0, 105.21481, 128, 6.73378)

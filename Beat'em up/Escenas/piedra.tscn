@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c0b4cd04adgjh"]
+
+[ext_resource type="Texture2D" uid="uid://x0kxane16wlu" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/spring_.png" id="1_3yeri"]
+
+[node name="piedra" type="StaticBody2D" unique_id=1584345827]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=409744127]
+texture = ExtResource("1_3yeri")
+region_enabled = true
+region_rect = Rect2(47.38257, 111.65639, 49.242966, 48.53093)
