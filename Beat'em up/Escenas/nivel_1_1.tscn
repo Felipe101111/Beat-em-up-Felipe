@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://hgd6dok0emau" path="res://Beat'em up/Escenas/nube.tscn" id="8_mfo28"]
 [ext_resource type="PackedScene" uid="uid://6h2tsmgi2l8w" path="res://Beat'em up/Escenas/esqueleto.tscn" id="9_7ea02"]
 [ext_resource type="PackedScene" uid="uid://bani6kuuokg3e" path="res://Beat'em up/Escenas/ojo_bolador.tscn" id="10_umm8h"]
+[ext_resource type="PackedScene" uid="uid://dxmyr3q8tm0gv" path="res://Beat'em up/Escenas/mago_malvado.tscn" id="11_mbclr"]
 
 [node name="Nivel1-1" type="Node2D" unique_id=762980232]
 
@@ -71,10 +72,16 @@ position = Vector2(1150, 563)
 position = Vector2(1012, 563)
 
 [node name="prota" parent="." unique_id=1876946664 instance=ExtResource("1_q427d")]
-position = Vector2(289, 547)
+position = Vector2(889, 542)
 
 [node name="esqueleto" parent="." unique_id=867841439 instance=ExtResource("9_7ea02")]
-position = Vector2(695, 550)
+position = Vector2(684, 544)
+
+[node name="ojo bolador" parent="." unique_id=1314634903 instance=ExtResource("10_umm8h")]
+position = Vector2(733, 309)
+
+[node name="mago malvado" parent="." unique_id=1504710928 instance=ExtResource("11_mbclr")]
+position = Vector2(142, 541)
 
 [node name="bloque-tierra" parent="." unique_id=445937969 instance=ExtResource("2_q427d")]
 position = Vector2(242, 618)
@@ -272,6 +279,3 @@ position = Vector2(1115.25, 35.25)
 
 [node name="nube30" parent="." unique_id=1357284215 instance=ExtResource("8_mfo28")]
 position = Vector2(1154.25, 35.250004)
-
-[node name="ojo bolador" parent="." unique_id=1314634903 instance=ExtResource("10_umm8h")]
-position = Vector2(911, 272)
