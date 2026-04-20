@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bchqmwga0e2mc" path="res://Beat'em up/Protagonista/jump-outline.png" id="3_rv1j3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qt16j"]
-size = Vector2(45, 64)
+size = Vector2(39, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rv1j3"]
 atlas = ExtResource("1_7qnnl")
@@ -172,17 +172,25 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jjp8"]
+size = Vector2(20, 15)
+
 [node name="prota" type="CharacterBody2D" unique_id=1876946664]
 script = ExtResource("1_2jjp8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=580888762]
-position = Vector2(1.5, 10)
+position = Vector2(-1.5, 10)
 shape = SubResource("RectangleShape2D_qt16j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1209039399]
 position = Vector2(1.7285347e-06, -3.8146973e-06)
 scale = Vector2(2.8750002, 2.625)
 sprite_frames = SubResource("SpriteFrames_yuyt6")
-animation = &"punch"
-frame = 2
-frame_progress = 0.26434982
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1837846510]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=280848506]
+position = Vector2(24, -2.5)
+shape = SubResource("RectangleShape2D_2jjp8")
