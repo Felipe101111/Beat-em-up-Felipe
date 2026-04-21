@@ -188,7 +188,7 @@ shape = SubResource("RectangleShape2D_f1y7j")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1445988747]
 scale = Vector2(1.8266842, 1.63291)
 sprite_frames = SubResource("SpriteFrames_88vwh")
-animation = &"idle"
+animation = &"ataque"
 
 [node name="areaDeteccion" type="Area2D" parent="." unique_id=401338193]
 
