@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b6jlv7arewfuc" path="res://Monsters_Creatures_Fantasy/Skeleton/Walk.png" id="5_f1y7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1y7j"]
-size = Vector2(59, 83)
+size = Vector2(72, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs5ol"]
 atlas = ExtResource("2_s7ihk")
@@ -172,16 +172,32 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7ihk"]
+radius = 202.0099
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8prd1"]
+radius = 123.40584
+
 [node name="esqueleto" type="CharacterBody2D" unique_id=867841439]
 script = ExtResource("1_s7ihk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1186034316]
-position = Vector2(3.5, 0.5)
+position = Vector2(8, -1)
 shape = SubResource("RectangleShape2D_f1y7j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1445988747]
 scale = Vector2(1.8266842, 1.63291)
 sprite_frames = SubResource("SpriteFrames_88vwh")
-animation = &"ataque"
+animation = &"idle"
+
+[node name="areaDeteccion" type="Area2D" parent="." unique_id=401338193]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaDeteccion" unique_id=16822826]
+shape = SubResource("CircleShape2D_s7ihk")
+
+[node name="areaAtaque" type="Area2D" parent="." unique_id=454178971]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaAtaque" unique_id=1173819154]
+shape = SubResource("CircleShape2D_8prd1")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

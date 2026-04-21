@@ -5,7 +5,12 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -300.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+var salud_maxima = 100
+var salud_actual
 
+func _ready() -> void:
+	salud_actual = salud_maxima
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -39,3 +44,8 @@ func _physics_process(delta: float) -> void:
 
 	
 	move_and_slide()
+
+func recibir_daño(daño: int):
+	salud_actual -= daño
+	if salud_actual <= 0:
+		queue_free()
