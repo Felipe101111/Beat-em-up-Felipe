@@ -1,13 +1,11 @@
 [gd_scene format=4 uid="uid://bpywptb1yh3ip"]
 
-[ext_resource type="PackedScene" uid="uid://0x6egu45p2fh" path="res://Beat'em up/Escenas/prota.tscn" id="1_q427d"]
 [ext_resource type="Texture2D" uid="uid://epnxeweju3hw" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/background_/sky_.png" id="2_4buua"]
 [ext_resource type="Texture2D" uid="uid://bfyrcwl37yc70" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/objects_/staticObjects_.png" id="3_mfo28"]
 [ext_resource type="Texture2D" uid="uid://bku2aivdy2p0o" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/desertDungeon_.png" id="4_7ea02"]
 [ext_resource type="PackedScene" uid="uid://cahksyvb3uys2" path="res://Beat'em up/Escenas/borde.tscn" id="5_xkps4"]
 [ext_resource type="Texture2D" uid="uid://x0kxane16wlu" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/midground_/spring_.png" id="6_pshn2"]
 [ext_resource type="PackedScene" uid="uid://6h2tsmgi2l8w" path="res://Beat'em up/Escenas/esqueleto.tscn" id="9_7ea02"]
-[ext_resource type="PackedScene" uid="uid://bani6kuuokg3e" path="res://Beat'em up/Escenas/ojo_bolador.tscn" id="10_umm8h"]
 [ext_resource type="PackedScene" uid="uid://dxmyr3q8tm0gv" path="res://Beat'em up/Escenas/mago_malvado.tscn" id="11_mbclr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4buua"]
@@ -606,20 +604,14 @@ tile_set = SubResource("TileSet_mfo28")
 tile_map_data = PackedByteArray("AAASACAAAQADAAIAAAATACAAAQAEAAIAAAAUACAAAQAEAAIAAAAVACAAAQAEAAIAAAAWACAAAQAEAAIAAAAXACAAAQAEAAIAAAAYACAAAQAEAAIAAAAZACAAAQAEAAIAAAAaACAAAQAEAAIAAAAbACAAAQAEAAIAAAAcACAAAQAEAAIAAAAdACAAAQAEAAIAAAAeACAAAQAEAAIAAAAfACAAAQAEAAIAAAAgACAAAQAFAAIAAAAzACAAAQADAAIAAAA0ACAAAQAEAAIAAAA1ACAAAQAEAAIAAAA2ACAAAQAEAAIAAAA3ACAAAQAEAAIAAAA4ACAAAQAEAAIAAAA5ACAAAQAEAAIAAAA6ACAAAQAEAAIAAAA7ACAAAQAEAAIAAAA8ACAAAQAEAAIAAAA9ACAAAQAEAAIAAAA+ACAAAQAEAAIAAAA/ACAAAQAEAAIAAABAACAAAQAEAAIAAABBACAAAQAFAAIAAAAoACAAAQAEAAIAAAApACAAAQAEAAIAAAAqACAAAQAEAAIAAAArACAAAQAEAAIAAAAsACAAAQAFAAIAAAAnACAAAQADAAIAAAA=")
 tile_set = SubResource("TileSet_mntue")
 
-[node name="prota" parent="." unique_id=1876946664 instance=ExtResource("1_q427d")]
-position = Vector2(339, 565)
-
 [node name="esqueleto" parent="." unique_id=867841439 instance=ExtResource("9_7ea02")]
 position = Vector2(141, 566)
-
-[node name="ojo bolador" parent="." unique_id=1314634903 instance=ExtResource("10_umm8h")]
-position = Vector2(619, 426)
-
-[node name="mago malvado" parent="." unique_id=1504710928 instance=ExtResource("11_mbclr")]
-position = Vector2(49, 569)
 
 [node name="borde" parent="." unique_id=265521779 instance=ExtResource("5_xkps4")]
 position = Vector2(-9, 276)
 
 [node name="borde2" parent="." unique_id=1321663987 instance=ExtResource("5_xkps4")]
 position = Vector2(1164, 276)
+
+[node name="mago_malvado" parent="." unique_id=1504710928 instance=ExtResource("11_mbclr")]
+position = Vector2(545, 567)

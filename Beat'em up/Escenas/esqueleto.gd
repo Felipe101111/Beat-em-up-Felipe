@@ -3,12 +3,14 @@ const SPEED = 150.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var areaDeteccion = $areaDeteccion
 @onready var areaAtaque = $areaAtaque
-var prota = null
+var mago_malvado = null
 var en_rango = false
 var en_rango_ataque = false
 var puede_atacar = true
 var atacando = false 
-var dano_aplicado = false  
+var dano_aplicado = false
+var salud_maxima = 100
+var salud_actual 
 
 func _ready() -> void:
 	areaDeteccion.area_entered.connect(_on_area_deteccion_entered)
@@ -16,6 +18,7 @@ func _ready() -> void:
 	areaAtaque.body_entered.connect(_on_area_ataque_body_entered)
 	areaAtaque.body_exited.connect(_on_area_ataque_body_exited)
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
+	salud_actual = salud_maxima
 	
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -26,9 +29,9 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 			return
 			
-		if prota and en_rango:
+		if mago_malvado and en_rango:
 			if not en_rango_ataque:
-				var direccion = (prota.global_position - global_position).normalized()
+				var direccion = (mago_malvado.global_position - global_position).normalized()
 				velocity = direccion * SPEED
 				animated_sprite_2d.play("walk")
 				if direccion.x < 0:
@@ -46,23 +49,23 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_area_deteccion_entered(area):
-	if area.get_parent().name == "prota":
-		prota = area.get_parent()
+	if area.get_parent().name == "mago_malvado":
+		mago_malvado = area.get_parent()
 		en_rango = true
 
 func _on_area_deteccion_exited(area):
-	if area.get_parent().name == "prota":
-		prota = null
+	if area.get_parent().name == "mago_malvado":
+		mago_malvado = null
 		en_rango = false
 		atacando = false
 		dano_aplicado = false
 
 func _on_area_ataque_body_entered(body):
-	if body.name == "prota":
+	if body.name == "mago_malvado":
 		en_rango_ataque = true
 
 func _on_area_ataque_body_exited(body):
-	if body.name == "prota":
+	if body.name == "mago_malvado":
 		en_rango_ataque = false
 		if atacando:
 			atacando = false
@@ -78,8 +81,8 @@ func atacar():
 	puede_atacar = true
 	atacando = false
 	
-	if en_rango_ataque and prota and !dano_aplicado:
-		prota.recibir_daño(50)
+	if en_rango_ataque and mago_malvado and !dano_aplicado:
+		mago_malvado.recibir_daño(50)
 		dano_aplicado = true
 	
 	await get_tree().create_timer(3).timeout
@@ -89,3 +92,10 @@ func atacar():
 func _on_animation_finished():
 	if animated_sprite_2d.animation == "ataque":
 		animated_sprite_2d.play("idle" )
+		
+func recibir_daño(daño: int):
+	salud_actual -= daño
+	if salud_actual <= 0:
+		animated_sprite_2d.play("dead")
+		await get_tree().create_timer(0.5).timeout
+		queue_free()
