@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://dxmyr3q8tm0gv"]
 
-[ext_resource type="Script" uid="uid://cbx3sx2qtr82l" path="res://mago_malvado.gd" id="1_7qspc"]
+[ext_resource type="Script" uid="uid://cbx3sx2qtr82l" path="res://Beat'em up/Scripts/mago_malvado.gd" id="1_7qspc"]
 [ext_resource type="Texture2D" uid="uid://df4fgo1e6jmy7" path="res://Beat'em up/EVil Wizard 2/Sprites/Attack1.png" id="2_dugt6"]
 [ext_resource type="Texture2D" uid="uid://dklx1p8x3nbwo" path="res://Beat'em up/EVil Wizard 2/Sprites/Idle.png" id="3_j7ws1"]
 [ext_resource type="Texture2D" uid="uid://cwm42ph8acaad" path="res://Beat'em up/EVil Wizard 2/Sprites/Jump.png" id="4_koolt"]
 [ext_resource type="Texture2D" uid="uid://cwivm8loduid1" path="res://Beat'em up/EVil Wizard 2/Sprites/Run.png" id="5_c2xa1"]
+[ext_resource type="Texture2D" uid="uid://cqvtllwmdmu36" path="res://Beat'em up/EVil Wizard 2/Sprites/Death.png" id="5_dugt6"]
+[ext_resource type="Texture2D" uid="uid://bool8yl10ci2s" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/objects_/items_.png" id="8_c2xa1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7qspc"]
 size = Vector2(34, 53)
@@ -80,6 +82,34 @@ region = Rect2(0, 0, 250, 250)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rm1f"]
 atlas = ExtResource("4_koolt")
 region = Rect2(250, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ws1"]
+atlas = ExtResource("5_dugt6")
+region = Rect2(0, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koolt"]
+atlas = ExtResource("5_dugt6")
+region = Rect2(250, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2xa1"]
+atlas = ExtResource("5_dugt6")
+region = Rect2(500, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxxg1"]
+atlas = ExtResource("5_dugt6")
+region = Rect2(750, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gspds"]
+atlas = ExtResource("5_dugt6")
+region = Rect2(1000, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrqsc"]
+atlas = ExtResource("5_dugt6")
+region = Rect2(1250, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0woq"]
+atlas = ExtResource("5_dugt6")
+region = Rect2(1500, 0, 250, 250)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_613ox"]
 atlas = ExtResource("5_c2xa1")
@@ -186,6 +216,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_j7ws1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koolt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2xa1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxxg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gspds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrqsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0woq")
+}],
+"loop": false,
+"name": &"muerte",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_613ox")
 }, {
 "duration": 1.0,
@@ -226,11 +282,33 @@ shape = SubResource("RectangleShape2D_7qspc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=200475310]
 sprite_frames = SubResource("SpriteFrames_mxxg1")
-animation = &"ataque"
-frame_progress = 0.6301967
+animation = &"muerte"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=497734669]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1232826474]
 position = Vector2(69, -13)
 shape = SubResource("RectangleShape2D_dugt6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1111240901]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=436724577]
+position = Vector2(30, 86)
+scale = Vector2(2, 2)
+texture = ExtResource("8_c2xa1")
+region_enabled = true
+region_rect = Rect2(33.63459, 34.033882, 12.783348, 12.040134)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer" unique_id=923232895]
+position = Vector2(60, 86)
+scale = Vector2(2, 2)
+texture = ExtResource("8_c2xa1")
+region_enabled = true
+region_rect = Rect2(34.08052, 34.33117, 12.040131, 11.44556)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer" unique_id=700549415]
+position = Vector2(90, 86)
+scale = Vector2(2, 2)
+texture = ExtResource("8_c2xa1")
+region_enabled = true
+region_rect = Rect2(33.931877, 33.88524, 12.337418, 11.891491)

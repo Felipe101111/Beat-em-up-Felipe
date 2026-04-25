@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://0x6egu45p2fh"]
 
-[ext_resource type="Script" uid="uid://c66dq4svmhs2b" path="res://Beat'em up/Escenas/prota.gd" id="1_2jjp8"]
+[ext_resource type="Script" uid="uid://c66dq4svmhs2b" path="res://Beat'em up/Scripts/prota.gd" id="1_2jjp8"]
 [ext_resource type="Texture2D" uid="uid://bheqmju2acglw" path="res://Beat'em up/Protagonista/Idle-outline.png" id="1_7qnnl"]
 [ext_resource type="Texture2D" uid="uid://baep25mw2j3yv" path="res://Beat'em up/Protagonista/Punch-outline.png" id="2_7ces6"]
 [ext_resource type="Texture2D" uid="uid://ckf5c2gwygthv" path="res://Beat'em up/Protagonista/walk-outline.png" id="3_2jjp8"]

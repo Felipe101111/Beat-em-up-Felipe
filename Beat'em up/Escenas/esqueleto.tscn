@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://6h2tsmgi2l8w"]
 
-[ext_resource type="Script" uid="uid://d13ufbwgtk8b1" path="res://Beat'em up/Escenas/esqueleto.gd" id="1_s7ihk"]
+[ext_resource type="Script" uid="uid://d13ufbwgtk8b1" path="res://Beat'em up/Scripts/esqueleto.gd" id="1_s7ihk"]
 [ext_resource type="Texture2D" uid="uid://c1ba8kvkjgg04" path="res://Monsters_Creatures_Fantasy/Skeleton/Attack.png" id="2_s7ihk"]
 [ext_resource type="Texture2D" uid="uid://xnp53odfy54s" path="res://Monsters_Creatures_Fantasy/Skeleton/Death.png" id="3_8prd1"]
 [ext_resource type="Texture2D" uid="uid://dfweyjoqlbyi5" path="res://Monsters_Creatures_Fantasy/Skeleton/Idle.png" id="4_ifika"]
 [ext_resource type="Texture2D" uid="uid://b6jlv7arewfuc" path="res://Monsters_Creatures_Fantasy/Skeleton/Walk.png" id="5_f1y7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1y7j"]
-size = Vector2(72, 78)
+size = Vector2(63, 78)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs5ol"]
 atlas = ExtResource("2_s7ihk")
@@ -173,22 +173,22 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s7ihk"]
-radius = 202.0099
+radius = 207.00966
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7ihk"]
-size = Vector2(198, 42)
+size = Vector2(175, 27)
 
 [node name="esqueleto" type="CharacterBody2D" unique_id=867841439]
 script = ExtResource("1_s7ihk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1186034316]
-position = Vector2(8, 4)
+position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_f1y7j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1445988747]
 scale = Vector2(1.8266842, 1.63291)
 sprite_frames = SubResource("SpriteFrames_88vwh")
-animation = &"ataque"
+animation = &"idle"
 
 [node name="areaDeteccion" type="Area2D" parent="." unique_id=401338193]
 
@@ -198,7 +198,7 @@ shape = SubResource("CircleShape2D_s7ihk")
 [node name="areaAtaque" type="Area2D" parent="." unique_id=454178971]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="areaAtaque" unique_id=1173819154]
-position = Vector2(1, -11)
+position = Vector2(5.5, -5)
 shape = SubResource("RectangleShape2D_s7ihk")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

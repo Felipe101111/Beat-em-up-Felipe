@@ -3,8 +3,11 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -490.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_ataque = $Area2D
+@onready var corazon1 = $CanvasLayer/Sprite2D
+@onready var corazon2 =$CanvasLayer/Sprite2D2
+@onready var corazon3 = $CanvasLayer/Sprite2D3
 
-var salud_maxima = 100
+var salud_maxima = 3
 var salud_actual
 var puede_golpear = true
 var mirando_derecha = true
@@ -56,7 +59,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func golpear():
-	print("golpeando")
 	puede_golpear = false
 	
 	var areas_cercanas = area_ataque.get_overlapping_areas()
@@ -73,7 +75,16 @@ func _on_animation_finished():
 	if animated_sprite_2d.animation == "punch":
 		animated_sprite_2d.play("idle")
 
-func recibir_daño(daño: int):
-	salud_actual -= daño
-	if salud_actual <= 0:
+func recibir_daño():
+	salud_actual -= 1
+	
+	if salud_actual == 2:
+		corazon3.visible = false
+	elif salud_actual == 1:
+		corazon2.visible = false
+	elif salud_actual <= 0:
+		corazon1.visible = false
+		set_physics_process(false)
+		animated_sprite_2d.play("muerte")
+		await animated_sprite_2d.animation_finished
 		queue_free()

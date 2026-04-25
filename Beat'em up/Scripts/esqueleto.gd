@@ -9,7 +9,7 @@ var en_rango_ataque = false
 var puede_atacar = true
 var atacando = false 
 var dano_aplicado = false
-var salud_maxima = 100
+var salud_maxima = 150
 var salud_actual 
 
 func _ready() -> void:
@@ -36,8 +36,10 @@ func _physics_process(delta: float) -> void:
 				animated_sprite_2d.play("walk")
 				if direccion.x < 0:
 					animated_sprite_2d.flip_h = true
+					areaAtaque.position.x = -abs(areaAtaque.position.x)
 				else:
 					animated_sprite_2d.flip_h = false
+					areaAtaque.position.x = abs(areaAtaque.position.x)
 			else:
 				velocity = Vector2.ZERO
 				if puede_atacar:
@@ -82,7 +84,7 @@ func atacar():
 	atacando = false
 	
 	if en_rango_ataque and mago_malvado and !dano_aplicado:
-		mago_malvado.recibir_daño(50)
+		mago_malvado.recibir_daño()
 		dano_aplicado = true
 	
 	await get_tree().create_timer(3).timeout
@@ -98,4 +100,5 @@ func recibir_daño(daño: int):
 	if salud_actual <= 0:
 		animated_sprite_2d.play("dead")
 		await get_tree().create_timer(0.5).timeout
+		get_tree().current_scene.chequear_enemigos()
 		queue_free()
