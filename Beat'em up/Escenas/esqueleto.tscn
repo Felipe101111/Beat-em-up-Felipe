@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://c1ba8kvkjgg04" path="res://Monsters_Creatures_Fantasy/Skeleton/Attack.png" id="2_s7ihk"]
 [ext_resource type="Texture2D" uid="uid://xnp53odfy54s" path="res://Monsters_Creatures_Fantasy/Skeleton/Death.png" id="3_8prd1"]
 [ext_resource type="Texture2D" uid="uid://dfweyjoqlbyi5" path="res://Monsters_Creatures_Fantasy/Skeleton/Idle.png" id="4_ifika"]
+[ext_resource type="Texture2D" uid="uid://dcnj6j1a63mim" path="res://Monsters_Creatures_Fantasy/Skeleton/Take Hit.png" id="5_8prd1"]
 [ext_resource type="Texture2D" uid="uid://b6jlv7arewfuc" path="res://Monsters_Creatures_Fantasy/Skeleton/Walk.png" id="5_f1y7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1y7j"]
-size = Vector2(63, 78)
+size = Vector2(50, 79)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs5ol"]
 atlas = ExtResource("2_s7ihk")
@@ -73,6 +74,22 @@ region = Rect2(300, 0, 150, 150)
 atlas = ExtResource("4_ifika")
 region = Rect2(450, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifika"]
+atlas = ExtResource("5_8prd1")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1y7j"]
+atlas = ExtResource("5_8prd1")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ednlc"]
+atlas = ExtResource("5_8prd1")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpwdt"]
+atlas = ExtResource("5_8prd1")
+region = Rect2(450, 0, 150, 150)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qju4l"]
 atlas = ExtResource("5_f1y7j")
 region = Rect2(0, 0, 150, 150)
@@ -133,7 +150,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3gli4")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 6.0
 }, {
@@ -156,6 +173,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ifika")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1y7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ednlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpwdt")
+}],
+"loop": false,
+"name": &"take_hit",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qju4l")
 }, {
 "duration": 1.0,
@@ -172,33 +206,46 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s7ihk"]
-radius = 207.00966
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s7ihk"]
+radius = 52.487087
+height = 284.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7ihk"]
 size = Vector2(175, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8prd1"]
+size = Vector2(59, 78)
 
 [node name="esqueleto" type="CharacterBody2D" unique_id=867841439]
 script = ExtResource("1_s7ihk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1186034316]
-position = Vector2(4.5, 0)
+position = Vector2(8, 0.5)
 shape = SubResource("RectangleShape2D_f1y7j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1445988747]
 scale = Vector2(1.8266842, 1.63291)
 sprite_frames = SubResource("SpriteFrames_88vwh")
-animation = &"idle"
+animation = &"take_hit"
+frame_progress = 0.99067754
 
 [node name="areaDeteccion" type="Area2D" parent="." unique_id=401338193]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="areaDeteccion" unique_id=16822826]
-shape = SubResource("CircleShape2D_s7ihk")
+position = Vector2(7.000002, 0)
+scale = Vector2(3.3913102, 0.1750001)
+shape = SubResource("CapsuleShape2D_s7ihk")
 
 [node name="areaAtaque" type="Area2D" parent="." unique_id=454178971]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="areaAtaque" unique_id=1173819154]
 position = Vector2(5.5, -5)
 shape = SubResource("RectangleShape2D_s7ihk")
+
+[node name="areaDaño" type="Area2D" parent="." unique_id=1606338218]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaDaño" unique_id=982028781]
+position = Vector2(5.5, 0)
+shape = SubResource("RectangleShape2D_8prd1")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -13,33 +13,21 @@ size = Vector2(34, 53)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwa55"]
 atlas = ExtResource("2_dugt6")
-region = Rect2(0, 0, 250, 250)
+region = Rect2(750, 0, 250, 250)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kda0c"]
 atlas = ExtResource("2_dugt6")
-region = Rect2(250, 0, 250, 250)
+region = Rect2(1000, 0, 250, 250)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rl5v6"]
 atlas = ExtResource("2_dugt6")
-region = Rect2(500, 0, 250, 250)
+region = Rect2(1250, 0, 250, 250)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjrfj"]
 atlas = ExtResource("2_dugt6")
-region = Rect2(750, 0, 250, 250)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xttqx"]
-atlas = ExtResource("2_dugt6")
-region = Rect2(1000, 0, 250, 250)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ks4iq"]
-atlas = ExtResource("2_dugt6")
-region = Rect2(1250, 0, 250, 250)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s60qi"]
-atlas = ExtResource("2_dugt6")
 region = Rect2(1500, 0, 250, 250)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bv50c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xttqx"]
 atlas = ExtResource("2_dugt6")
 region = Rect2(1750, 0, 250, 250)
 
@@ -160,17 +148,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xttqx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ks4iq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s60qi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bv50c")
 }],
-"loop": true,
+"loop": false,
 "name": &"ataque",
 "speed": 8.0
 }, {
@@ -210,7 +189,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7rm1f")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -273,6 +252,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dugt6"]
 size = Vector2(49, 97.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ws1"]
+size = Vector2(34, 53)
+
 [node name="mago_malvado" type="CharacterBody2D" unique_id=1504710928]
 script = ExtResource("1_7qspc")
 
@@ -282,12 +264,15 @@ shape = SubResource("RectangleShape2D_7qspc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=200475310]
 sprite_frames = SubResource("SpriteFrames_mxxg1")
-animation = &"muerte"
+animation = &"ataque"
+frame = 4
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=497734669]
+position = Vector2(70, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1232826474]
-position = Vector2(69, -13)
+position = Vector2(3, -5)
 shape = SubResource("RectangleShape2D_dugt6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1111240901]
@@ -312,3 +297,9 @@ scale = Vector2(2, 2)
 texture = ExtResource("8_c2xa1")
 region_enabled = true
 region_rect = Rect2(33.931877, 33.88524, 12.337418, 11.891491)
+
+[node name="areadaño" type="Area2D" parent="." unique_id=209984329]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areadaño" unique_id=184825852]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_j7ws1")

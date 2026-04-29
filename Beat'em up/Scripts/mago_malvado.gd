@@ -11,6 +11,7 @@ var salud_maxima = 3
 var salud_actual
 var puede_golpear = true
 var mirando_derecha = true
+var atacando = false
 
 func _ready() -> void:
 	salud_actual = salud_maxima
@@ -31,6 +32,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
+		atacando = false
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
@@ -45,8 +47,8 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		animated_sprite_2d.play("jump")
-	elif velocity.x == 0 and Input.is_action_pressed("punch"):
-		animated_sprite_2d.play("ataque")
+	elif atacando:
+		pass
 	elif  direction > 0:
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.play("walk")
@@ -60,19 +62,26 @@ func _physics_process(delta: float) -> void:
 	
 func golpear():
 	puede_golpear = false
+	atacando = true
+	animated_sprite_2d.play("ataque")
 	
 	var areas_cercanas = area_ataque.get_overlapping_areas()
 	for area in areas_cercanas:
-		var enemigo = area.get_parent()
-		if enemigo.has_method("recibir_daño"):
-			await get_tree().create_timer(0.5).timeout
-			enemigo.recibir_daño(50)
+		if area.name == "areaDaño":
+			var enemigo = area.get_parent()
+			if enemigo.has_method("recibir_daño"):
+				if is_instance_valid(enemigo):
+					enemigo.recibir_daño(50)
 	
-
-	puede_golpear = true	
+	await get_tree().create_timer(1.0).timeout
+	puede_golpear = true
+	atacando = false
 	
 func _on_animation_finished():
 	if animated_sprite_2d.animation == "punch":
+		atacando = false 
+		animated_sprite_2d.play("idle")
+	elif animated_sprite_2d.animation == "jump":
 		animated_sprite_2d.play("idle")
 
 func recibir_daño():

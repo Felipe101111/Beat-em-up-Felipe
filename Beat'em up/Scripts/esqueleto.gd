@@ -9,8 +9,9 @@ var en_rango_ataque = false
 var puede_atacar = true
 var atacando = false 
 var dano_aplicado = false
-var salud_maxima = 150
+var salud_maxima = 250
 var salud_actual 
+var recibiendo_daño = false
 
 func _ready() -> void:
 	areaDeteccion.area_entered.connect(_on_area_deteccion_entered)
@@ -24,7 +25,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
-		if atacando:
+		if atacando or recibiendo_daño:
 			velocity = Vector2.ZERO
 			move_and_slide()
 			return
@@ -51,12 +52,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_area_deteccion_entered(area):
-	if area.get_parent().name == "mago_malvado":
+	if area.name == "areadaño":
 		mago_malvado = area.get_parent()
 		en_rango = true
 
 func _on_area_deteccion_exited(area):
-	if area.get_parent().name == "mago_malvado":
+	if area.name == "areadaño":
 		mago_malvado = null
 		en_rango = false
 		atacando = false
@@ -98,7 +99,23 @@ func _on_animation_finished():
 func recibir_daño(daño: int):
 	salud_actual -= daño
 	if salud_actual <= 0:
+		set_physics_process(false)
+		puede_atacar = false
+		atacando = false
+		velocity = Vector2.ZERO
+		areaDeteccion.monitoring = false
+		areaAtaque.monitoring = false
 		animated_sprite_2d.play("dead")
-		await get_tree().create_timer(0.5).timeout
+		await animated_sprite_2d.animation_finished
 		get_tree().current_scene.chequear_enemigos()
 		queue_free()
+	else:
+		recibiendo_daño = true
+		atacando = true
+		puede_atacar = false
+		velocity = Vector2.ZERO
+		animated_sprite_2d.play("take_hit") 
+		await animated_sprite_2d.animation_finished
+		recibiendo_daño = false
+		atacando = false
+		puede_atacar = true
