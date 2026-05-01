@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cahksyvb3uys2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmeur"]
-size = Vector2(21, 591)
+size = Vector2(12, 591)
 
 [node name="borde" type="StaticBody2D" unique_id=265521779]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1512582052]
-position = Vector2(0.5, 19.5)
+position = Vector2(0, 19.5)
 shape = SubResource("RectangleShape2D_kmeur")
