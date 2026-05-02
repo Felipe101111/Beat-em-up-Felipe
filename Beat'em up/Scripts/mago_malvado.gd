@@ -6,7 +6,9 @@ const JUMP_VELOCITY = -490.0
 @onready var corazon1 = $CanvasLayer/Sprite2D
 @onready var corazon2 =$CanvasLayer/Sprite2D2
 @onready var corazon3 = $CanvasLayer/Sprite2D3
+@onready var area_pies = $piso
 
+var puede_recibir_daño_pincho = true
 var salud_maxima = 3
 var salud_actual
 var puede_golpear = true
@@ -15,6 +17,7 @@ var atacando = false
 
 func _ready() -> void:
 	salud_actual = salud_maxima
+	area_pies.body_entered.connect(_on_pies_body_entered)
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
 	
 func _physics_process(delta: float) -> void:
@@ -65,14 +68,15 @@ func golpear():
 	atacando = true
 	animated_sprite_2d.play("ataque")
 	
-	var areas_cercanas = area_ataque.get_overlapping_areas()
-	for area in areas_cercanas:
-		if area.name == "areaDaño":
-			var enemigo = area.get_parent()
-			if enemigo.has_method("recibir_daño"):
-				if is_instance_valid(enemigo):
-					enemigo.recibir_daño(50)
-	
+	if velocity.x == 0:
+		var areas_cercanas = area_ataque.get_overlapping_areas()
+		for area in areas_cercanas:
+			if area.name == "areaDaño":
+				var enemigo = area.get_parent()
+				if enemigo.has_method("recibir_daño"):
+					if is_instance_valid(enemigo):
+						enemigo.recibir_daño(50)
+
 	await get_tree().create_timer(1.0).timeout
 	puede_golpear = true
 	atacando = false
@@ -97,3 +101,11 @@ func recibir_daño():
 		animated_sprite_2d.play("muerte")
 		await animated_sprite_2d.animation_finished
 		queue_free()
+		
+func _on_pies_body_entered(body):
+	if body is TileMapLayer and body.name == "pinchos":
+		if puede_recibir_daño_pincho:
+			recibir_daño()
+			puede_recibir_daño_pincho = false
+			await get_tree().create_timer(1.0).timeout
+			puede_recibir_daño_pincho = true

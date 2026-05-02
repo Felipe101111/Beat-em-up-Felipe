@@ -255,6 +255,9 @@ size = Vector2(49, 97.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ws1"]
 size = Vector2(34, 53)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_koolt"]
+size = Vector2(36, 5)
+
 [node name="mago_malvado" type="CharacterBody2D" unique_id=1504710928]
 script = ExtResource("1_7qspc")
 
@@ -301,5 +304,11 @@ region_rect = Rect2(33.931877, 33.88524, 12.337418, 11.891491)
 [node name="areadaño" type="Area2D" parent="." unique_id=209984329]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="areadaño" unique_id=184825852]
-position = Vector2(0, 15)
+position = Vector2(0, 15.5)
 shape = SubResource("RectangleShape2D_j7ws1")
+
+[node name="piso" type="Area2D" parent="." unique_id=934488171]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="piso" unique_id=113141094]
+position = Vector2(0, 41.5)
+shape = SubResource("RectangleShape2D_koolt")

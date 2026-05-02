@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b6jlv7arewfuc" path="res://Monsters_Creatures_Fantasy/Skeleton/Walk.png" id="5_f1y7j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1y7j"]
-size = Vector2(50, 79)
+size = Vector2(50, 77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs5ol"]
 atlas = ExtResource("2_s7ihk")
@@ -220,7 +220,7 @@ size = Vector2(59, 78)
 script = ExtResource("1_s7ihk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1186034316]
-position = Vector2(8, 0.5)
+position = Vector2(8, 1.5)
 shape = SubResource("RectangleShape2D_f1y7j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1445988747]

@@ -9,7 +9,7 @@ var en_rango_ataque = false
 var puede_atacar = true
 var atacando = false 
 var dano_aplicado = false
-var salud_maxima = 20
+@export var salud_maxima = 200
 var salud_actual 
 var recibiendo_daño = false
 
