@@ -1031,15 +1031,19 @@ salud_maxima = 300
 
 [node name="esqueleto3" parent="enemigos2" unique_id=1689158560 instance=ExtResource("9_7ea02")]
 position = Vector2(1450, 468)
+salud_maxima = 300
 
 [node name="esqueleto4" parent="enemigos2" unique_id=1719544922 instance=ExtResource("9_7ea02")]
 position = Vector2(1443, 564)
+salud_maxima = 300
 
 [node name="esqueleto5" parent="enemigos2" unique_id=640737622 instance=ExtResource("9_7ea02")]
 position = Vector2(1992, 564)
+salud_maxima = 300
 
 [node name="esqueleto6" parent="enemigos2" unique_id=483388396 instance=ExtResource("9_7ea02")]
 position = Vector2(1899, 375)
+salud_maxima = 300
 
 [node name="zona3" type="Area2D" parent="." unique_id=263678592]
 
@@ -1051,9 +1055,11 @@ shape = SubResource("RectangleShape2D_mbclr")
 
 [node name="esqueleto" parent="enemigos3" unique_id=2008049627 instance=ExtResource("9_7ea02")]
 position = Vector2(2782, 548)
+salud_maxima = 350
 
 [node name="esqueleto2" parent="enemigos3" unique_id=837384738 instance=ExtResource("9_7ea02")]
 position = Vector2(2786, 244)
+salud_maxima = 350
 
 [node name="borde" parent="." unique_id=265521779 instance=ExtResource("5_xkps4")]
 position = Vector2(-9, 293)

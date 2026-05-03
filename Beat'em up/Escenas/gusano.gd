@@ -1,5 +1,6 @@
 extends CharacterBody2D
 const SPEED = 150.0
+const bola_fuego = preload("res://Beat'em up/Escenas/bola_de_fuego.tscn")  # Cambiá la ruta
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var areaDeteccion = $areaDeteccion
 @onready var areaAtaque = $areaAtaque
@@ -84,9 +85,8 @@ func atacar():
 	puede_atacar = true
 	atacando = false
 	
-	if en_rango_ataque and mago_malvado and !dano_aplicado:
-		mago_malvado.recibir_Daño()
-		dano_aplicado = true
+	if mago_malvado:
+		lanzar_bola_fuego()
 	
 	await get_tree().create_timer(3).timeout
 	puede_atacar = true
@@ -105,7 +105,7 @@ func recibir_daño(daño: int):
 		velocity = Vector2.ZERO
 		areaDeteccion.monitoring = false
 		areaAtaque.monitoring = false
-		animated_sprite_2d.play("dead")
+		animated_sprite_2d.play("muerte")
 		await animated_sprite_2d.animation_finished
 		get_tree().current_scene.chequear_enemigos()
 		queue_free()
@@ -114,8 +114,19 @@ func recibir_daño(daño: int):
 		atacando = true
 		puede_atacar = false
 		velocity = Vector2.ZERO
-		animated_sprite_2d.play("take_hit") 
+		animated_sprite_2d.play("recibir_daño") 
 		await animated_sprite_2d.animation_finished
 		recibiendo_daño = false
 		atacando = false
 		puede_atacar = true
+		
+func lanzar_bola_fuego():
+	var bola = bola_fuego.instantiate()
+	get_tree().current_scene.add_child(bola)
+	bola.global_position = global_position
+	
+	if mago_malvado.global_position.x < global_position.x:
+		bola.direccion = -1
+		bola.get_node("AnimatedSprite2D").flip_h = true
+	else:
+		bola.direccion = 1

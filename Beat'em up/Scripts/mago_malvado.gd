@@ -88,7 +88,7 @@ func _on_animation_finished():
 	elif animated_sprite_2d.animation == "jump":
 		animated_sprite_2d.play("idle")
 
-func recibir_daño():
+func recibir_Daño():
 	salud_actual -= 1
 	
 	if salud_actual == 2:
@@ -105,7 +105,7 @@ func recibir_daño():
 func _on_pies_body_entered(body):
 	if body is TileMapLayer and body.name == "pinchos":
 		if puede_recibir_daño_pincho:
-			recibir_daño()
+			recibir_Daño()
 			puede_recibir_daño_pincho = false
 			await get_tree().create_timer(1.0).timeout
 			puede_recibir_daño_pincho = true
