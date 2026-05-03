@@ -6,10 +6,12 @@ const JUMP_VELOCITY = -490.0
 @onready var corazon1 = $CanvasLayer/Sprite2D
 @onready var corazon2 =$CanvasLayer/Sprite2D2
 @onready var corazon3 = $CanvasLayer/Sprite2D3
+@onready var corazon4 = $CanvasLayer/Sprite2D4
+@onready var corazon5 = $CanvasLayer/Sprite2D5
 @onready var area_pies = $piso
 
 var puede_recibir_daño_pincho = true
-var salud_maxima = 3
+var salud_maxima = 5
 var salud_actual
 var puede_golpear = true
 var mirando_derecha = true
@@ -91,7 +93,11 @@ func _on_animation_finished():
 func recibir_Daño():
 	salud_actual -= 1
 	
-	if salud_actual == 2:
+	if salud_actual == 4:
+		corazon5.visible = false
+	elif salud_actual == 3:
+		corazon4.visible = false
+	elif salud_actual == 2:
 		corazon3.visible = false
 	elif salud_actual == 1:
 		corazon2.visible = false
@@ -100,7 +106,7 @@ func recibir_Daño():
 		set_physics_process(false)
 		animated_sprite_2d.play("muerte")
 		await animated_sprite_2d.animation_finished
-		queue_free()
+		get_tree().call_deferred("change_scene_to_file", "res://Beat'em up/Escenas/perdiste.tscn")
 		
 func _on_pies_body_entered(body):
 	if body is TileMapLayer and body.name == "pinchos":

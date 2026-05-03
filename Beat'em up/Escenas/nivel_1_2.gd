@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _on_siguiente_nivel_entered(body: Node2D) -> void:
 	if body.name == "mago_malvado":
-		get_tree().change_scene_to_file("res://Beat'em up/Escenas/nivel_1_2.tscn")
+		get_tree().change_scene_to_file("res://Beat'em up/Escenas/ganaste.tscn")
 
 func _on_zona1_entered(body):
 	if body.name == "mago_malvado":

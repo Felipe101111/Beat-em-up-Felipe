@@ -301,6 +301,20 @@ texture = ExtResource("8_c2xa1")
 region_enabled = true
 region_rect = Rect2(33.931877, 33.88524, 12.337418, 11.891491)
 
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer" unique_id=245675357]
+position = Vector2(120, 86)
+scale = Vector2(2.125, 2.0909097)
+texture = ExtResource("8_c2xa1")
+region_enabled = true
+region_rect = Rect2(33.931877, 33.88524, 12.337418, 11.891491)
+
+[node name="Sprite2D5" type="Sprite2D" parent="CanvasLayer" unique_id=513359799]
+position = Vector2(148.99998, 86)
+scale = Vector2(2.145834, 2.1136367)
+texture = ExtResource("8_c2xa1")
+region_enabled = true
+region_rect = Rect2(33.931877, 33.88524, 12.337418, 11.891491)
+
 [node name="areadaño" type="Area2D" parent="." unique_id=209984329]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="areadaño" unique_id=184825852]

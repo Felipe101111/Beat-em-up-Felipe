@@ -1,6 +1,6 @@
 extends CharacterBody2D
 const SPEED = 150.0
-const bola_fuego = preload("res://Beat'em up/Escenas/bola_de_fuego.tscn")  # Cambiá la ruta
+const bola_fuego = preload("res://Beat'em up/Escenas/bola_de_fuego.tscn")
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var areaDeteccion = $areaDeteccion
 @onready var areaAtaque = $areaAtaque
@@ -10,7 +10,7 @@ var en_rango_ataque = false
 var puede_atacar = true
 var atacando = false 
 var dano_aplicado = false
-@export var salud_maxima = 200
+@export var salud_maxima = 100
 var salud_actual 
 var recibiendo_daño = false
 

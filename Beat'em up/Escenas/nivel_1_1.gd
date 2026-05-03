@@ -37,8 +37,6 @@ func _on_zona1_entered(body):
 			bloquear_camara(1)
 			borde2.queue_free()
 			zona1.queue_free()
-		else:
-			print("¡Todavía quedan enemigos!")
 
 func _on_zona2_entered(body):
 	if body.name == "mago_malvado":
@@ -47,8 +45,6 @@ func _on_zona2_entered(body):
 			bloquear_camara(2)
 			borde3.queue_free()
 			zona2.queue_free()
-		else:
-			print("¡Todavía quedan enemigos!")
 
 func _on_zona3_entered(body):
 	if body.name == "mago_malvado":
@@ -57,8 +53,6 @@ func _on_zona3_entered(body):
 			bloquear_camara(2)
 			borde4.queue_free()
 			zona3.queue_free()
-		else:
-			print("¡Todavía quedan enemigos!")
 
 
 func bloquear_camara(zona: int):
@@ -67,7 +61,6 @@ func bloquear_camara(zona: int):
 	camara.limit_left = zonas[zona]["limite_izquierdo"]
 	camara.limit_right = zonas[zona]["limite_derecho"]
 	camara.limit_top = zonas[zona]["limite_techo"]
-	print("Cámara bloqueada en zona ", zona)
 
 func chequear_enemigos():
 	await get_tree().process_frame
@@ -77,6 +70,5 @@ func chequear_enemigos():
 
 func desbloquear_camara():
 	camara_bloqueada = false
-	print("¡Zona limpia!")
 	if zona_actual + 1 < zonas.size():
 		camara.limit_right = zonas[zona_actual + 1]["limite_derecho"]

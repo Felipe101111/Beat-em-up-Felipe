@@ -80,7 +80,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_in6c6")
 }],
-"loop": true,
+"loop": false,
 "name": &"explosion",
 "speed": 7.0
 }, {
@@ -119,8 +119,6 @@ position = Vector2(-1.9073486e-06, 1.9073486e-06)
 scale = Vector2(1.3586956, 1.2608696)
 sprite_frames = SubResource("SpriteFrames_vwu0d")
 animation = &"movimiento"
-frame = 4
-frame_progress = 0.18827963
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=963679684]
 shape = SubResource("CircleShape2D_r81fs")

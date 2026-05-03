@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Juego-Beat'em up"
-run/main_scene="uid://bpywptb1yh3ip"
+run/main_scene="uid://bvayvn2376cnb"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [input]
