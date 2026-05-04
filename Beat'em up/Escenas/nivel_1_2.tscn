@@ -1569,4 +1569,4 @@ position = Vector2(2299, 308)
 position = Vector2(3439, 307)
 
 [node name="siguiente_nivel" parent="." unique_id=95325124 instance=ExtResource("9_chsgr")]
-position = Vector2(678, 455)
+position = Vector2(3478, 554)
