@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bucithuukpag4"]
+
+[ext_resource type="Script" uid="uid://c0kypmkvro4t0" path="res://Beat'em up/Escenas/controles.gd" id="1_4k06c"]
+[ext_resource type="Texture2D" uid="uid://kn7oe2nwq858" path="res://Beat'em up/fourSeasonsPlatformer_ [tileset, version 2.0]/background_/Captura de pantalla 2026-05-03 175916.png" id="1_r5bww"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4k06c"]
+texture = ExtResource("1_r5bww")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47eim"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+expand_margin_left = 100.0
+expand_margin_right = 100.0
+shadow_size = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlcpb"]
+bg_color = Color(0, 0, 0, 0.6901961)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+expand_margin_left = 35.0
+expand_margin_right = 35.0
+shadow_size = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hu7b4"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="controles" type="Control" unique_id=1981433279]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4k06c")
+
+[node name="Panel" type="Panel" parent="." unique_id=1207133685]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 646.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4k06c")
+
+[node name="Label" type="Label" parent="." unique_id=101253407]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.0
+offset_top = 81.0
+offset_right = 167.0
+offset_bottom = 168.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_47eim")
+text = "Beat'em up"
+
+[node name="Label2" type="Label" parent="." unique_id=958231347]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 213.0
+offset_right = 1085.0
+offset_bottom = 498.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_wlcpb")
+text = "Controles:
+moviento -> Las flechitas y espacio
+ataque -> z
+"
+
+[node name="Button2" type="Button" parent="." unique_id=1504233505]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -132.0
+offset_right = 74.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_hu7b4")
+text = "menu"
+
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

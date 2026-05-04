@@ -10,13 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Beat'em up/Escenas/nivel_1_1.tscn")
-
 func _on_button_2_pressed() -> void:
-	get_tree().quit()
-	
-
-func _on_button_3_pressed() -> void:
-	get_tree().change_scene_to_file("res://Beat'em up/Escenas/controles.tscn")
-	
+	get_tree().change_scene_to_file("res://Beat'em up/Escenas/menu.tscn")

@@ -68,6 +68,12 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_dxxc1")
 text = "Jugar"
 
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=503139281]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_df1h4")
+text = "controles"
+
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=424202305]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -89,4 +95,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_y7wts")
 text = "Beat'em up"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
