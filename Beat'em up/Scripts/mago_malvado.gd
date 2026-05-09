@@ -3,15 +3,18 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -490.0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var area_ataque = $Area2D
+#CORRECCION: Te entiendo, pero si tenés la cantidad de vida, le pasas esa cantidad de vida a una función que genera en el momento la cantidad de corazones necesarios, no necesitás tener una referencia al objeto de cada corazón, qué pasa si después querés que haya 6 vidas??? 
 @onready var corazon1 = $CanvasLayer/Sprite2D
 @onready var corazon2 =$CanvasLayer/Sprite2D2
 @onready var corazon3 = $CanvasLayer/Sprite2D3
 @onready var corazon4 = $CanvasLayer/Sprite2D4
-@onready var corazon5 = $CanvasLayer/Sprite2D5
+@onready var corazon5 = $CanvasLayer/Sprite2D
+#Además tenés que prestarle un poco de atención a cómo hacer UI. Usaste nodos azules en lugar de verdes, los pusiste probablemente a mano en un canvas layer. Si cambio las dimensiones de la pantalla probablemente algo se termine viendo mal. Mirate esto https://www.youtube.com/watch?v=55U-hnUnFAY
 @onready var area_pies = $piso
 
 var puede_recibir_daño_pincho = true
-var salud_maxima = 5
+#CORRECCION: Le tuve que subir mucho la vida para jugarlo porque no podía evitar que me pegaran.
+var salud_maxima = 200
 var salud_actual
 var puede_golpear = true
 var mirando_derecha = true
@@ -22,19 +25,20 @@ func _ready() -> void:
 	area_pies.body_entered.connect(_on_pies_body_entered)
 	animated_sprite_2d.animation_finished.connect(_on_animation_finished)
 	
+#CORRECCION: Este principio función _physics_process es default de godot para el movimiento de CharacterBody. De dónde hiciste el copy paste??? sus
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("j") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
 	if Input.is_action_just_pressed("punch") and is_on_floor() and puede_golpear:
 		golpear()
 
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("l", "r")
 	if direction:
 		velocity.x = direction * SPEED
 		atacando = false
@@ -54,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play("jump")
 	elif atacando:
 		pass
+	#CORRECCION: Para qué declaraste mirando_derecha entonces? xD No está MAL tener variables que no usemos, pero nos molestan un poco cuando queremos entender el script.
 	elif  direction > 0:
 		animated_sprite_2d.flip_h = false
 		animated_sprite_2d.play("walk")
@@ -93,6 +98,7 @@ func _on_animation_finished():
 func recibir_Daño():
 	salud_actual -= 1
 	
+	#CORRECCION: Ves lo que digo, condenás al que mantenga el proyecto a meter un if nuevo cada vez que quiera cambiarle la vida al jugador, ralentiza bastante el trabajo. Igual comprendo que puede ser mucho más rápido de hacer que lo otro, pero los juegos crecen, así que cambiemos estas cosas para los próximos casos.
 	if salud_actual == 4:
 		corazon5.visible = false
 	elif salud_actual == 3:
@@ -107,6 +113,7 @@ func recibir_Daño():
 		animated_sprite_2d.play("muerte")
 		await animated_sprite_2d.animation_finished
 		get_tree().call_deferred("change_scene_to_file", "res://Beat'em up/Escenas/perdiste.tscn")
+	#CORRECCION: Además es inconsistente, funciona medio raro.
 		
 func _on_pies_body_entered(body):
 	if body is TileMapLayer and body.name == "pinchos":

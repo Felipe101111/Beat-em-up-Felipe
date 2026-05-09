@@ -14,6 +14,7 @@ var salud_actual
 var recibiendo_daño = false
 
 func _ready() -> void:
+	#CORRECCION: En los botones del menú seteaste las señales en el inspector, por qué acá distinto? No está MAL pero corremos el riesgo de que no nos sirva (_ready no siempre va a ejecutarse cuando necesitemos usar una señal, aunque este no es el caso) o simplemente moleste tener este código. EN GENERAL SE USA PARA cuando los objetos se agregan dinámicamente por código, p.e.: si armamos un spawn de enemigos, quizá cuando el enemigo spawnee queremos conectar su señal "murio" a una clase que sume los puntos.
 	areaDeteccion.area_entered.connect(_on_area_deteccion_entered)
 	areaDeteccion.area_exited.connect(_on_area_deteccion_exited)
 	areaAtaque.body_entered.connect(_on_area_ataque_body_entered)
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 			move_and_slide()
 			return
-			
+		#CORRECCION: Me gusta este uso de los flags.
 		if mago_malvado and en_rango:
 			if not en_rango_ataque:
 				var direccion = (mago_malvado.global_position - global_position).normalized()
@@ -51,6 +52,8 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
+
+#CORRECCION: Si usaras layers y mask, le ponés un layer distinto a areadaño y no tenés que hacer un if acá, solo entraría si es un areadaño. Estás haciendo que todas las colisiones pasen por acá a pesar de que no nos interese. Lo mismo con las de "mago_malvado". Mirate https://www.youtube.com/watch?v=WmpBGQC8LY8
 func _on_area_deteccion_entered(area):
 	if area.name == "areadaño":
 		mago_malvado = area.get_parent()
@@ -80,6 +83,8 @@ func atacar():
 	dano_aplicado = false
 	animated_sprite_2d.play("ataque")
 	
+	
+	#Acá parece haber un problema. Si empieza la animación de atacar del esqueleto y yo lo ataco, perdimos la referencia al timer y no lo podemos frenar, va a hacer daño aunque lo stuneemos. Siempre se puede crear un timer como nodo, mirá, dejo uno en la escena. Con ese nodo podemos tener una referencia y entonces podemos frenarlo y que no haga daño.
 	await get_tree().create_timer(0.8).timeout
 	puede_atacar = true
 	atacando = false
@@ -97,6 +102,7 @@ func _on_animation_finished():
 		animated_sprite_2d.play("idle" )
 		
 func recibir_daño(daño: int):
+	#CORRECCION: En esta función frenaríamos el timer como dije arriba
 	salud_actual -= daño
 	if salud_actual <= 0:
 		set_physics_process(false)
